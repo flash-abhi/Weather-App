@@ -29,11 +29,8 @@ export const registerUser = async (req, res) => {
       password: hashedPassword,
     });
 
-    res.status(201).json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      token: generateToken(user._id),
+    return res.status(201).json({
+      message: "Registered Successfully !!"
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -63,15 +60,10 @@ export const loginUser = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
-    res.json({
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      token: gentoken,
-    });
+    return res.json({message: "Login Successfull" });
     
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };
 
@@ -82,4 +74,13 @@ export const logout = (req, res) => {
   });
 
   res.status(200).json({ message: "Logged out successfully" });
+};
+
+export const getCurrentUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user).select("-password");
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
