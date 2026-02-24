@@ -10,6 +10,7 @@ dotenv.config();
 
 const app = express();
 const Port = process.env.PORT || 3000;
+
 app.use(cors({
     origin: "http://localhost:5173", 
     credentials: true, 
@@ -26,4 +27,3 @@ app.listen(Port, async () => {
     await connectDb();
     console.log("Server Running on Port ",Port);
 });
-
