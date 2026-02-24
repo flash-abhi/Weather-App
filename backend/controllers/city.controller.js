@@ -5,7 +5,9 @@ import axios from "axios";
 export const addCity = async (req, res) => {
   try {
     const { name } = req.body;
-
+    if (!name) {
+      return res.status(400).json({ message: "City name is required" });
+    }
     const weatherRes = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?q=${name}&appid=${process.env.WEATHER_KEY}&units=metric`
     );

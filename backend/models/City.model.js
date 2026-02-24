@@ -15,6 +15,6 @@ const citySchema = new mongoose.Schema({
     required: true
   }
 }, { timestamps: true });
-
+citySchema.index({ userId: 1, isFavorite: -1 });
 const City = mongoose.model("City", citySchema);
 export default City;
