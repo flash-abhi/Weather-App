@@ -9,15 +9,16 @@ import { connectDb } from "./utils/db.js";
 dotenv.config();
 
 const app = express();
-const Port = process.env.PORT;
-app.use(cors());
+const Port = process.env.PORT || 3000;
+app.use(cors()); 
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/cities", cityRoutes);
 app.use("/api/ai", aiRoutes);
 
-app.listen(Port, () => {
+app.listen(Port, async () => {
+    await connectDb();
     console.log("Server Running on Port ",Port);
-    connectDb();
-})
+});
+
