@@ -30,7 +30,9 @@ export const registerUser = async (req, res) => {
     });
 
     return res.status(201).json({
-      message: "Registered Successfully !!"
+      _id: user._id,
+      name: user.name,
+      email: user.email,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -60,7 +62,11 @@ export const loginUser = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000
     });
 
-    return res.json({message: "Login Successfull" });
+    return res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+    });
     
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -78,6 +84,7 @@ export const logout = (req, res) => {
 
 export const getCurrentUser = async (req, res) => {
   try {
+    // console.log(req.user);
     const user = await User.findById(req.user).select("-password");
     res.status(200).json(user);
   } catch (error) {

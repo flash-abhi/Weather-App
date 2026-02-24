@@ -19,7 +19,7 @@ export const addCity = async (req, res) => {
       temperature: data.main.temp,
       weather: data.weather[0].description,
       humidity: data.main.humidity,
-      userId: req.user.id,
+      userId: req.user,
     });
 
     res.status(201).json(city);
@@ -30,7 +30,7 @@ export const addCity = async (req, res) => {
 
 // Get all cities for logged in user
 export const getCities = async (req, res) => {
-  const cities = await City.find({ userId: req.user.id }).sort({
+  const cities = await City.find({ userId: req.user }).sort({
     isFavorite: -1,
   });
 
@@ -45,7 +45,7 @@ export const toggleFavorite = async (req, res) => {
     return res.status(404).json({ message: "City not found" });
 
   // strict isolation check
-  if (city.userId.toString() !== req.user.id)
+  if (city.userId.toString() !== req.user)
     return res.status(403).json({ message: "Unauthorized access" });
 
   city.isFavorite = !city.isFavorite;
@@ -61,7 +61,7 @@ export const deleteCity = async (req, res) => {
   if (!city)
     return res.status(404).json({ message: "City not found" });
 
-  if (city.userId.toString() !== req.user.id)
+  if (city.userId.toString() !== req.user)
     return res.status(403).json({ message: "Unauthorized access" });
 
   await city.deleteOne();
