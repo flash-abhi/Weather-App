@@ -12,9 +12,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@langchain/openai": "^1.2.9",
+    "axios": "^1.13.5",
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "mongoose": "^9.2.2"
+    "jsonwebtoken": "^9.0.3",
+    "langchain": "^1.2.26",
+    "mongoose": "^9.2.2",
+    "openai": "^6.23.0"
   }
 }
