@@ -17,7 +17,9 @@ const Login = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      await API.post("/auth/login", form);
+      const result = await API.post("/auth/login", form);
+      console.log(result);
+      
       toast.success("Login successfull !!")
       navigate("/dashboard");
     } catch (error) {
