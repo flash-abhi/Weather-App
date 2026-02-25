@@ -6,9 +6,10 @@ import {
   toggleFavorite,
 } from "../services/cityServices";
 
-export const handleAddCity = async (setCities,city,setCity) => {
+export const handleAddCity = async (setCities,city,setCity,setLoadingAdd) => {
   try {
     if (!city) return;
+    setLoadingAdd(true);
     const newCityName = city.charAt(0).toUpperCase() + city.slice(1);
     const result = await addCity(newCityName);
     setCities((prev) => {
@@ -20,9 +21,11 @@ export const handleAddCity = async (setCities,city,setCity) => {
       }
     });
     setCity("");
+    setLoadingAdd(false)
     toast.success("City added successfully");
   } catch (error) {
     setCity("");
+    setLoadingAdd(false)
     toast.error("Failed to add city");
   }
 };
