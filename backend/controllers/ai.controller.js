@@ -4,7 +4,7 @@ import { SystemMessage, HumanMessage } from "@langchain/core/messages";
 
 export const weatherInsights = async (req, res) => {
   try {
-    const cities = await City.find({ userId: req.user.id });
+    const cities = await City.find({ userId: req.user});
 
     if (!cities.length) {
       return res.json({

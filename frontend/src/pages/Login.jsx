@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock, FaCloudSun } from "react-icons/fa";
-import API from "../services/api";
 import toast from "react-hot-toast";
-
+import { useAuth } from "../context/AuthContext";
 const Login = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -17,11 +17,12 @@ const Login = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      await API.post("/auth/login", form);
+      await login(form);      
       toast.success("Login successfull !!")
       navigate("/dashboard");
     } catch (error) {
-      toast.error(error.response?.data?.message || "Login failed")
+      toast.error(error.response?.data?.message || "Login failed");
+      console.log(error)
     } finally {
       setLoading(false);
     }
