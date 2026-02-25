@@ -12,7 +12,7 @@ const app = express();
 const Port = process.env.PORT || 3000;
 
 app.use(cors({
-    origin: "http://localhost:5173", 
+    origin: "https://weather-app-vb0j.onrender.com", 
     credentials: true, 
 })); 
 
