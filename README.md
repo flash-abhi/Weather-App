@@ -91,3 +91,41 @@ Weather Api:
                                                                                │  • Returns recommendations  │
                                                                                └─────────────────────────────┘
 ```
+
+
+## Authentication and Authorization
+
+Authentication
+
+- JWT-based authentication
+- Password hashing using bcrypt
+- Secure token storage
+- Login persistence via cookies
+
+Authorization
+- Middleware validates JWT
+- Every city query is filtered by userId
+- Strict user data isolation
+- Users cannot access or modify other users' data
+
+## 🌆 Multi-City Dashboard
+Features:
+- Add multiple cities
+- Fetch real-time weather data dynamically
+- Loading, error, and empty states handled
+
+Weather data is fetched from:
+- OpenWeatherMap API
+
+Each city is:
+- Stored in MongoDB
+- Associated with a specific user
+
+## ⭐ Favorites Functionality
+
+- Users can mark/unmark cities as favorite
+- Favorite status persists in MongoDB
+- Favorites are user-specific
+- Special UI indicator for favorite cities
+- Favorites filter option available
+
