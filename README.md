@@ -129,3 +129,45 @@ Each city is:
 - Special UI indicator for favorite cities
 - Favorites filter option available
 
+## 🚀 Deployment
+Platform Used:
+- Render (web services for backend || static sites for frontend )
+
+Deployment Strategy:
+- Frontend and backend deployed separately
+- Environment variables configured securely
+- CORS configured for cross-origin requests
+- MongoDB Atlas used for production database
+
+## Project Setup Guide - 
+
+1 : clone Repository
+```
+git clone <my-repo-url>
+cd Weather-App
+```
+2 : Backend Setup
+```
+cd backend
+npm install
+```
+3 : Create .env file and create and set this keys
+```
+PORT=****
+MONGO_URI=your_mongodb_uri
+JWT_SECRET=your_secret
+OPENWEATHER_API_KEY=your_key
+OPENAI_API_KEY=your_key
+```
+4 : Run
+```
+npm run start
+```
+5: Frontend setup
+```
+cd frontend
+npm install
+npm run dev
+```
+
+# Made by Abhishek Chauhan 2026
