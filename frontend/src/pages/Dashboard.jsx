@@ -18,7 +18,6 @@ const Dashboard = () => {
     try {
       setLoadingInsights(true);
       const res = await getWeatherInsights();
-      console.log(res);
       setInsights(res.data.summaries || []);
     } catch (error) {
       toast.error("Failed to fetch AI insights");
