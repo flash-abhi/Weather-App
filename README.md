@@ -128,11 +128,23 @@ Each city is:
 - Favorites are user-specific
 - Special UI indicator for favorite cities
 - Favorites filter option available
-- 
+
+## Approach Followed in building 
+- Backend (Project files and folder setup)
+- Backend ( connected the mongodb atlas and create the route for the user , cities and ai )
+- Backend Api Testing using Postman 
+- Frontend (login and Register First)
+- Implemented the CORS for Connecting the backend with Frontend
+- Frontend (Dashboard adding cities, adding to favourite, removing the cities)
+
 ## Purpose of AI in my Project - 
 - In this Application Ai is giving you the summary of the weather.
 - Also If the Climate is not well It will alerts you.
 - So always take the Ai suggestion before going outside.
+
+## limitation of my project - 
+- Since we are adding the City so the data of the city can be stale after one day.
+- Ui can be more impressive but the Time boundaries for submitting the assignment are less i cannot give much time in designing the UI so I have kept the UI Simple and Clean for completing it on time.
 
 ## 🚀 Deployment
 Platform Used:
