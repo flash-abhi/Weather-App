@@ -6,10 +6,7 @@ import { useAuth } from "./context/AuthContext";
 import { Toaster } from "react-hot-toast";
 
 function App() {
-  const { user, loading , getCurrentUser} = useAuth();
- 
-    getCurrentUser();
-    console.log("called");
+  const { user, loading } = useAuth();
 
   if (loading) {
     return (

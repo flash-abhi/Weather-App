@@ -8,15 +8,12 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   // Check login on refresh using cookie
-  const getCurrentUser = () => {
       useEffect(() => {
         const fetchUser = async () => {
           try {
             const res = await API.get("/auth/me");
             setUser(res.data);
-            console.log(res.data)
-            console.log("set");
-            console.log(user)
+            // console.log(res.data)
           } catch (err) {
             setUser(null);
           } finally {
@@ -26,11 +23,10 @@ export const AuthProvider = ({ children }) => {
     
         fetchUser();
       }, []);
-  }
 
   const login = async (formData) => {
     const res = await API.post("/auth/login", formData);
-    setUser(res.data); // only store user
+    setUser(res.data);
   };
 
   const logout = async () => {
@@ -39,7 +35,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, getCurrentUser, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
