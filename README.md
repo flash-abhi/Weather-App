@@ -128,6 +128,11 @@ Each city is:
 - Favorites are user-specific
 - Special UI indicator for favorite cities
 - Favorites filter option available
+- 
+## Purpose of AI in my Project - 
+- In this Application Ai is giving you the summary of the weather.
+- Also If the Climate is not well It will alerts you.
+- So always take the Ai suggestion before going outside.
 
 ## 🚀 Deployment
 Platform Used:
