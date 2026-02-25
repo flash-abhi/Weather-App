@@ -138,12 +138,12 @@ Each city is:
 - Frontend (Dashboard adding cities, adding to favourite, removing the cities)
 
 ## Purpose of AI in my Project - 
-- In this Application Ai is giving you the summary of the weather.
-- Also If the Climate is not well It will alerts you.
-- So always take the Ai suggestion before going outside.
+- Ai is alerting the User to not go ouside or use Umbrella if weather is rainy.
+- Also Ai is giving suggestion Enjoy if weather is amazing.
 
 ## limitation of my project - 
 - Since we are adding the City so the data of the city can be stale after one day.
+- but adding the city again will resolve this problem.
 - Ui can be more impressive but the Time boundaries for submitting the assignment are less i cannot give much time in designing the UI so I have kept the UI Simple and Clean for completing it on time.
 
 ## 🚀 Deployment
