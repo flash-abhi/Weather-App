@@ -10,3 +10,5 @@ export const deleteCity = (id) =>
 
 export const toggleFavorite = (id) =>
   API.put(`/cities/${id}/favorite`);
+
+

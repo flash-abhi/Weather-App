@@ -47,7 +47,7 @@ const Navbar = () => {
             className="px-4 py-2 flex items-center gap-2 cursor-pointer text-white transition hover:bg-green-600 bg-green-500 font-bold rounded-lg shadow-md hover:scale-105 hover:shadow-lg duration-300"
           >
             Logout
-            <LuLogOut cl/>
+            <LuLogOut className="text-xl"/>
           </button>
         </div>
       </div>

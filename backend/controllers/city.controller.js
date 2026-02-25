@@ -14,6 +14,23 @@ export const addCity = async (req, res) => {
 
     const data = weatherRes.data;
 
+    // Check if city already exists for this user
+    const existingCity = await City.findOne({
+      name: data.name,
+      userId: req.user,
+    });
+    console.log(existingCity);
+    if (existingCity) {
+
+      existingCity.temperature = data.main.temp;
+      existingCity.weather = data.weather[0].description;
+      existingCity.humidity = data.main.humidity;
+
+      await existingCity.save();
+
+      return res.status(200).json(existingCity);
+    }
+
     const city = await City.create({
       name: data.name,
       temperature: data.main.temp,
@@ -21,7 +38,6 @@ export const addCity = async (req, res) => {
       humidity: data.main.humidity,
       userId: req.user,
     });
-
     res.status(201).json(city);
   } catch (error) {
     res.status(400).json({ message: "City not found" });
@@ -64,7 +80,6 @@ export const deleteCity = async (req, res) => {
   if (city.userId.toString() !== req.user)
     return res.status(403).json({ message: "Unauthorized access" });
 
-  await city.deleteOne();
-
-  res.json({ message: "City removed" });
+  const deletedCity = await City.findByIdAndDelete(city._id);
+  res.json(deletedCity);
 };

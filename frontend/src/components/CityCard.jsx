@@ -1,84 +1,99 @@
 import { motion } from "framer-motion";
 import {
   FaStar,
-  FaTemperatureLow,
+  FaTemperatureHigh,
   FaTint,
   FaCloudSun,
   FaWind,
 } from "react-icons/fa";
-import { RiDeleteBin5Fill } from "react-icons/ri";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
-const CityCard = ({ city , onToggleFavorite  }) => {
+const CityCard = ({ city, setCities, onToggleFavorite, removeCity }) => {
   const getWeatherIcon = () => {
     if (city.weather?.toLowerCase().includes("cloud"))
-      return <FaCloudSun className="text-yellow-400 text-7xl" />;
+      return <FaCloudSun className="text-yellow-400 text-6xl drop-shadow-xl" />;
     if (city.weather?.toLowerCase().includes("rain"))
-      return <FaTint className="text-blue-400 text-4xl" />;
-    return <FaCloudSun className="text-green-400 text-8xl" />;
+      return <FaTint className="text-blue-400 text-6xl drop-shadow-xl" />;
+    return <FaCloudSun className="text-emerald-500 text-6xl drop-shadow-xl" />;
   };
 
   return (
     <motion.div
-      whileHover={{ scale: 1.01   }}
-      transition={{ type: "spring", stiffness: 200 }}
-      className="relative w-72 p-6 rounded-3xl backdrop-blur-lg 
-      bg-gradient-to-br from-green-100 via-white to-green-50
-      shadow-xl border border-green-200 overflow-hidden"
+      transition={{ type: "spring", stiffness: 150 }}
+      className="relative w-[350px] p-6 rounded-3xl
+      bg-white/70 backdrop-blur-xl
+      border border-white/40
+      shadow-[0_20px_50px_rgba(0,0,0,0.08)]
+      hover:shadow-[0_25px_60px_rgba(0,0,0,0.15)]
+      transition-all duration-300"
     >
-      {/* Favorite Icon */}
+      {/* Favorite */}
       <motion.div
-        onClick={() => onToggleFavorite(city._id)}
         whileTap={{ scale: 1.3 }}
-        className="absolute top-4 right-4 cursor-pointer"
+        onClick={() => onToggleFavorite(city._id, setCities)}
+        className="absolute top-5 right-5 cursor-pointer z-10"
       >
         <FaStar
-          className={`text-2xl transition ${
-            city?.isFavorite ? "text-yellow-500" : "text-gray-300"
+          className={`text-xl transition ${
+            city?.isFavorite
+              ? "text-yellow-400 drop-shadow-md"
+              : "text-gray-300 "
           }`}
         />
       </motion.div>
 
       {/* City Name */}
-      <h2 className="text-3xl font-bold text-green-700 mb-2">
+      <h2 className="text-2xl font-bold text-gray-800 tracking-wide">
         {city.name}
       </h2>
 
       {/* Weather Icon */}
-      <div className="flex justify-center my-4">
+      <div className="flex justify-center my-6">
         {getWeatherIcon()}
       </div>
 
       {/* Temperature */}
-      <motion.div
-        animate={{ scale: [1, 1.05, 1] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="flex items-center justify-center gap-2 text-3xl font-semibold text-gray-700"
-      >
-        <FaTemperatureLow className="text-red-400" />
+      <div className="flex items-center justify-center gap-3 text-4xl font-bold text-gray-900">
+        <FaTemperatureHigh className="text-red-400 text-2xl" />
         {city.temperature}°C
-      </motion.div>
+      </div>
 
-      {/* Humidity & Weather */}
-      <div className="mt-4 space-y-2 text-gray-600 font-medium">
-        <div className="flex items-center gap-4">
-          <FaTint className="text-blue-400 text-2xl" />
-          Humidity: {city.humidity}%
+      {/* Divider */}
+      <div className="my-6 h-[1px] bg-gray-200" />
+
+      {/* Stats Row */}
+      <div className="grid grid-cols-2 gap-4 text-sm">
+        <div className="flex flex-col items-center bg-white rounded-xl py-3 shadow-sm">
+          <FaTint className="text-blue-400 text-lg mb-1" />
+          <span className="text-gray-600">Humidity</span>
+          <span className="font-semibold text-gray-800">
+            {city.humidity}%
+          </span>
         </div>
 
-        <div className="flex items-center gap-4">
-          <FaWind className="text-gray-400 text-2xl" />
-          Weather: {city.weather}
+        <div className="flex flex-col items-center bg-white rounded-xl py-3 shadow-sm">
+          <FaWind className="text-gray-400 text-lg mb-1" />
+          <span className="text-gray-600">Condition</span>
+          <span className="font-semibold text-gray-800 capitalize">
+            {city.weather}
+          </span>
         </div>
       </div>
-      
+
+      {/* Remove Button */}
       <motion.button
         whileTap={{ scale: 0.95 }}
-        whileHover={{ scale: 1.05 }}
-        className="mt-6 w-full bg-green-500 hover:bg-green-600
-        text-white font-semibold py-2 rounded-xl shadow-md text-lg
-        transition duration-300 cursor-pointer flex items-center justify-center gap-2"
+        whileHover={{ scale: 1.02 }}
+        onClick={() => removeCity(city._id, setCities)}
+        className="mt-7 w-full py-3 rounded-xl
+        bg-gradient-to-r from-emerald-500 to-green-600
+        hover:from-green-600 hover:to-emerald-700
+        text-white font-semibold cursor-pointer z-50
+        shadow-md transition duration-300
+        flex items-center justify-center gap-2"
       >
-        Remove <RiDeleteBin5Fill className="text-xl font-bold"/>
+        Remove
+        <RiDeleteBin6Line className="text-lg" />
       </motion.button>
     </motion.div>
   );
