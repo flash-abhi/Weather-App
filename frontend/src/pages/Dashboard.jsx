@@ -9,11 +9,13 @@ import { getWeatherInsights } from "../services/aiService";
 import { FaCity, FaCloudSun, FaPlusCircle, FaRobot, FaStar } from "react-icons/fa";
 import { handleAddCity, handleAllCities, handleFavouriteCities, handleRemoveCity, handleToggleFavorite } from "../custom/cityFunction";
 import AiCard from "../components/AiCard";
+import { PiSpinner } from "react-icons/pi";
 const Dashboard = () => {
   const [cities, setCities] = useState([]);
   const [city, setCity] = useState(null);
   const [insights, setInsights] = useState([]);
   const [loadingInsights, setLoadingInsights] = useState(false);
+  const [loadingAdd,setLoadingAdd] = useState(false);
   const fetchInsights = async () => {
     try {
       setLoadingInsights(true);
@@ -94,12 +96,16 @@ const Dashboard = () => {
               className="px-5 py-3 rounded-2xl border-2 border-emerald-200 focus:outline-none focus:border-emerald-500 shadow-sm w-full sm:w-64"
             />
 
-            <button
-              onClick={() => handleAddCity(setCities,city,setCity)}
+           <button
+              onClick={() => {handleAddCity(setCities,city,setCity,setLoadingAdd)}}
               className="flex cursor-pointer items-center gap-2 px-6 py-3 rounded-2xl font-semibold text-white bg-gradient-to-r from-green-600 to-emerald-500 shadow-lg hover:scale-105 transition"
-            >
-              <FaPlusCircle />
-              Add
+            >{
+              loadingAdd? <PiSpinner className="animate-spin text-2xl" />:
+              <div className="flex gap-2 items-center">
+                <FaPlusCircle />
+                Add
+              </div>
+              }
             </button>
           </div>
 
